@@ -1,5 +1,7 @@
 package cl.serlitoral.easyotd1.ui.views
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,7 +44,30 @@ class DetailFragment : Fragment() {
             }
         })
 
+        binding.fabEmailSend.setOnClickListener {
+            val address=arrayOf("info@plaplix.cl")
+            val subject="CONSULTA ${product.name} id ${product.id}"
+            val text="“Hola\n" +
+                    "Vi el producto ${product.name} y me gustaría que me contactaran a este correo o al\n" +
+                    "siguiente número _________(indique número aquí)\n" +
+                    "Quedo atento.”\n"
+
+            composeEmail(address,subject,text)
+        }
+
         return binding.root
+    }
+
+    fun composeEmail(address:Array<String>, subject: String, text:String) {
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, address)
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+            putExtra(Intent.EXTRA_TEXT, text)
+        }
+
+        startActivity(intent)
+
     }
 
 }
