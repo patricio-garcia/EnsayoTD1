@@ -22,6 +22,8 @@ class DetailFragment : Fragment() {
 
         binding = FragmentDetailBinding.inflate(inflater)
 
+        binding.chkCredit.isClickable = false
+
         val product = productVM.getSelected()
         productVM.consumeDetail(product.id)
 
@@ -30,6 +32,12 @@ class DetailFragment : Fragment() {
                 binding.imgProductDetail.load(it.image)
                 binding.tvProductNameDetail.text = it.name
                 binding.tvPriceProductDetail.text = it.price.toString()
+                binding.chkCredit.isChecked = it.credit
+                if (binding.chkCredit.isChecked) {
+                    binding.chkCredit.setText("Acepta Tarjeta de Crédito")
+                } else {
+                    binding.chkCredit.setText("No acepta Tarjeta de Crédito")
+                }
                 binding.tvDescProductDetail.text = it.description
             }
         })
