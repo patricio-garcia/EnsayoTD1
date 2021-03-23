@@ -33,7 +33,7 @@ class DetailFragment : Fragment() {
             it?.let {
                 binding.imgProductDetail.load(it.image)
                 binding.tvProductNameDetail.text = it.name
-                binding.tvPriceProductDetail.text = it.price.toString()
+                binding.tvPriceProductDetail.text = "$".plus(it.price.toString())
                 binding.chkCredit.isChecked = it.credit
                 if (binding.chkCredit.isChecked) {
                     binding.chkCredit.setText("Acepta Tarjeta de Crédito")

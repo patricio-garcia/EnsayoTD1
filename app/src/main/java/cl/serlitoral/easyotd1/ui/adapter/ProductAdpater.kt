@@ -41,6 +41,6 @@ class ProductVH(val binding: ProductItemBinding): RecyclerView.ViewHolder(bindin
     fun bind(product: Product) {
         binding.imgProduct.load(product.image)
         binding.tvProductName.text = product.name
-        binding.tvPriceProduct.text = product.price.toString()
+        binding.tvPriceProduct.text = "$".plus(product.price.toString())
     }
 }
