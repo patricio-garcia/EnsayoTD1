@@ -45,20 +45,20 @@ class DetailFragment : Fragment() {
         })
 
         binding.fabEmailSend.setOnClickListener {
-            val recipiens = arrayOf("info@plaplix.cl")
+            val recipiens = arrayOf("ventas@plaplix.cl")
             val subject = "CONSULTA ${product.name} id ${product.id}"
             val message = "Hola\n" +
                     "Vi el producto ${product.name} y me gustaría que me contactaran a este correo o al\n" +
                     "siguiente número _________(indique número aquí)\n" +
                     "Quedo atento.”\n"
 
-            composeEmail(recipiens, subject, message)
+            sendEmail(recipiens, subject, message)
         }
 
         return binding.root
     }
 
-    fun composeEmail(recipiens:Array<String>, subject: String, message: String) {
+    fun sendEmail(recipiens: Array<String>, subject: String, message: String) {
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")
             putExtra(Intent.EXTRA_EMAIL, recipiens)
