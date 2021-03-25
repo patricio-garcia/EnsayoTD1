@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:context=".ui.views.DetailFragment">
@@ -20,7 +20,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_gravity="right"
-        android:src="@drawable/ic_mail" />
+        android:backgroundTint="@color/accent"
+        app:tint="@color/text_icons"
+        android:src="@drawable/ic_email"/>
 
     <TextView
         android:id="@+id/tv_productNameDetail"
@@ -31,8 +33,9 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:textSize="25sp"
+        android:hint="@string/product"
         android:textStyle="bold"
-        android:hint="Producto" />
+        android:textColor="@color/primary_text"/>
 
     <TextView
         android:id="@+id/tv_priceProductDetail"
@@ -44,7 +47,8 @@
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="normal"
-        android:hint="$1000" />
+        android:textColor="@color/secondary_text"
+        android:hint="@string/price" />
 
     <CheckBox
         android:id="@+id/chk_credit"
@@ -53,7 +57,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="Credito" />
+        android:hint="@string/credit" />
 
     <TextView
         android:id="@+id/tv_descProductDetail"
@@ -65,6 +69,7 @@
         android:layout_marginBottom="8dp"
         android:textSize="16sp"
         android:textStyle="italic"
-        android:hint="Descripción larga del producto" />
+        android:textColor="@color/secondary_text"
+        android:hint="@string/description" />
 
 </LinearLayout>

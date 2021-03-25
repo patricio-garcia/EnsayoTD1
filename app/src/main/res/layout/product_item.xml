@@ -20,17 +20,19 @@
             android:id="@+id/tv_productName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
+            android:hint="@string/product"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/primary_text"/>
 
         <TextView
             android:id="@+id/tv_priceProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Precio"
+            android:hint="@string/price"
             android:textSize="16sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            android:textColor="@color/secondary_text"/>
 
     </LinearLayout>
 
