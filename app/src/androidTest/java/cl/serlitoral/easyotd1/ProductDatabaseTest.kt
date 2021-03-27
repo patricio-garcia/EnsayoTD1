@@ -11,6 +11,7 @@ import cl.serlitoral.easyotd1.domain.db.ProductDatabase
 import cl.serlitoral.easyotd1.domain.db.ProductEntity
 import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -22,40 +23,42 @@ class ProductDatabaseTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var productDao: ProductDAO
-    private lateinit var productDB: ProductDatabase
+    private lateinit var dao: ProductDAO
+    private lateinit var db: ProductDatabase
 
     @Before
     fun setUp() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        productDB =Room
+        db = Room
                 .inMemoryDatabaseBuilder(context, ProductDatabase::class.java)
                 .build()
 
-        productDao = productDB.productDao()
+        dao = db.productDao()
     }
 
     @After
-    fun tearDown() {
-        productDB.close()
+    fun closeDb() {
+        db.close()
     }
 
     @Test
     fun useAppContext() {
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        Truth.assertThat(appContext.packageName).isEqualTo("cl.serlitoral.easyotd1")
+        val appContext = InstrumentationRegistry
+                .getInstrumentation()
+                .targetContext
+        assertThat(appContext.packageName).isEqualTo("cl.serlitoral.easyotd1")
     }
 
     @Test
-    fun insertProduct_empry() {
+    fun insertProduct_empty() = runBlocking {
         //Give
         val productList = listOf<ProductEntity>()
 
         //When
-        productDao.insertProducts(productList)
+        dao.insertProducts(productList)
 
         //Then
-        productDao.getProducts().observeForever {
+        dao.getProducts().observeForever {
             assertThat(it).isNotNull()
             assertThat(it).isEmpty()
         }
